@@ -22,6 +22,7 @@ import           Options.Applicative (Parser, ParserInfo)
 import qualified Options.Applicative as Opt
 
 import           Paths_cardano_db_sync_extended (version)
+import           MigrationValidations (knownMigrations, KnownMigration(..))
 
 import           System.Info (arch, compilerName, compilerVersion, os)
 
@@ -34,8 +35,9 @@ main = do
         prometheusPort <- dncPrometheusPort <$> readSyncNodeConfig (enpConfigFile params)
 
         withMetricSetters prometheusPort $ \metricsSetters ->
-            runDbSyncNode metricsSetters extendedDbSyncNodePlugin params
-
+            runDbSyncNode metricsSetters extendedDbSyncNodePlugin knownMigrationsPlain params
+  where
+    knownMigrationsPlain = (\x -> (md5 x, filepath x)) <$> knownMigrations
 -- -------------------------------------------------------------------------------------------------
 
 opts :: ParserInfo SyncCommand
