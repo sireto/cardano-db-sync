@@ -42,6 +42,7 @@ import           Cardano.Db.Migration.Haskell
 import           Cardano.Db.Migration.Version
 import           Cardano.Db.PGConfig
 import           Cardano.Db.Run
+import           Cardano.Db.Text (textShow)
 import           Cardano.Db.Schema
 
 import           System.Directory (listDirectory)
@@ -214,9 +215,6 @@ getMigrationScripts (MigrationDir location) = do
     addVersionString :: FilePath -> Either FilePath (MigrationVersion, FilePath)
     addVersionString fp =
       maybe (Left fp) (\mv -> Right (mv, location </> fp)) $ parseMigrationVersionFromFile fp
-
-textShow :: Show a => a -> Text
-textShow = Text.pack . show
 
 hashMigrations :: MigrationDir -> IO [MigrationValidate]
 hashMigrations migrationDir = do

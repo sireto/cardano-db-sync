@@ -27,7 +27,7 @@ import           Cardano.Prelude hiding (catch)
 
 import           Cardano.BM.Trace (Trace, logError)
 
-import           Cardano.Db (SyncState (..))
+import           Cardano.Db (SyncState (..), textShow)
 
 import           Cardano.Sync.Config.Types ()
 import           Cardano.Sync.Types
@@ -74,9 +74,6 @@ isSyncedWithinSeconds sd target =
 
 textPrettyShow :: Show a => a -> Text
 textPrettyShow = Text.pack . ppShow
-
-textShow :: Show a => a -> Text
-textShow = Text.pack . show
 
 tipBlockNo :: Tip blk -> BlockNo
 tipBlockNo tip = withOrigin (BlockNo 0) identity (getTipBlockNo tip)
