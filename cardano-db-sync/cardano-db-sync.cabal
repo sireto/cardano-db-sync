@@ -153,8 +153,8 @@ library
 
 executable cardano-db-sync
   default-language:     Haskell2010
-  main-is:              ../app/cardano-db-sync.hs
-  hs-source-dirs:       gen
+  main-is:              cardano-db-sync.hs
+  hs-source-dirs:       gen, app
 
   ghc-options:          -O2
                         -Wall

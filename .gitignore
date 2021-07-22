@@ -7,4 +7,5 @@ result*
 launch_*
 cabal.project.local
 hie.yaml
+gen/
 /.vscode
