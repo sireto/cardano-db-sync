@@ -1,5 +1,5 @@
-{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 module Cardano.Db.Migration
   ( MigrationDir (..)
@@ -16,19 +16,19 @@ module Cardano.Db.Migration
   ) where
 
 import           Control.Exception (SomeException, handle)
-import           Control.Monad (forM_, forM, unless)
+import           Control.Monad (forM, forM_, unless)
 import           Control.Monad.IO.Class (liftIO)
 import           Control.Monad.Logger (NoLoggingT)
-import           Control.Monad.Trans.Reader (ReaderT)
 import           Control.Monad.Trans.Except (ExceptT, throwE)
+import           Control.Monad.Trans.Reader (ReaderT)
 import           Control.Monad.Trans.Resource (runResourceT)
 
 import qualified Data.ByteString.Char8 as BS
 import           Data.Conduit.Binary (sinkHandle)
 import           Data.Conduit.Process (sourceCmdWithConsumer)
 import           Data.Either (partitionEithers)
-import qualified Data.List as List
 import           Data.List ((\\))
+import qualified Data.List as List
 import           Data.Text (Text)
 import qualified Data.Text as Text
 import qualified Data.Text.IO as Text
@@ -42,8 +42,8 @@ import           Cardano.Db.Migration.Haskell
 import           Cardano.Db.Migration.Version
 import           Cardano.Db.PGConfig
 import           Cardano.Db.Run
-import           Cardano.Db.Text (textShow)
 import           Cardano.Db.Schema
+import           Cardano.Db.Text (textShow)
 
 import           System.Directory (listDirectory)
 import           System.Exit (ExitCode (..), exitFailure)
@@ -51,7 +51,7 @@ import           System.FilePath (takeFileName, (</>))
 import           System.IO (Handle, IOMode (AppendMode), hFlush, hPrint, hPutStrLn, stdout,
                    withFile)
 
-import           Crypto.Hash (hashWith, MD5(..))
+import           Crypto.Hash (MD5 (..), hashWith)
 
 newtype MigrationDir
   = MigrationDir FilePath

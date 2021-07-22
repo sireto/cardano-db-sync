@@ -29,7 +29,7 @@ import           Control.Monad.Trans.Maybe (MaybeT (..))
 
 import           Cardano.Slotting.Slot (EpochNo (..), SlotNo (..))
 
-import           Cardano.BM.Trace (Trace, logInfo, logError)
+import           Cardano.BM.Trace (Trace, logError, logInfo)
 
 import qualified Cardano.Db as DB
 
@@ -110,7 +110,7 @@ mkSyncDataLayer trce backend =
 -- Log error to Trace and panic.
 orDieWithLog :: (t -> Text) -> Trace IO Text -> ExceptT t IO () -> IO ()
 orDieWithLog render trce e = do
-  runExceptT e >>= \case 
+  runExceptT e >>= \case
     Left errors -> do
       let errorStr = render errors
       liftIO $ logError trce errorStr

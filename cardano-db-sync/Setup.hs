@@ -1,20 +1,20 @@
 module Main where
 
 import           Control.Monad (forM)
-import           Crypto.Hash (Digest(..), MD5(..), hashWith)
+import           Crypto.Hash (Digest (..), MD5 (..), hashWith)
 
 import qualified Data.ByteString.Char8 as BS
 
 import           Data.List (intercalate)
 
 import           Distribution.PackageDescription (extraSrcFiles)
-import           Distribution.Simple (UserHooks(..), defaultMainWithHooks, simpleUserHooks)
+import           Distribution.Simple (UserHooks (..), defaultMainWithHooks, simpleUserHooks)
 import           Distribution.Simple.BuildPaths (autogenPackageModulesDir)
-import           Distribution.Simple.LocalBuildInfo (LocalBuildInfo(..))
+import           Distribution.Simple.LocalBuildInfo (LocalBuildInfo (..))
 import           Distribution.Simple.Utils (createDirectoryIfMissingVerbose, rewriteFileEx)
 import           Distribution.Verbosity (normal)
 
-import           System.FilePath (takeExtension)-- filepath package
+import           System.FilePath (takeExtension)
 
 main :: IO ()
 main = defaultMainWithHooks generateHooks
